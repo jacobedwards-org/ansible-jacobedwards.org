@@ -1,0 +1,13 @@
+groups:
+  - name: disk_usage_alerts
+    rules:
+      - alert: HighDiskUsage
+        expr: (node_filesystem_size_bytes - node_filesystem_free_bytes) /
+                 node_filesystem_size_bytes * 100 > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High disk usage on {{ $labels.instance }}"
+          description: "Disk usage is above 80% on mount point {{ $labels.mountpoint }} (current usage: {{ $value | printf \"%.2f\" }}%)"
+

@@ -1,0 +1,15 @@
+- name: Install Promethus
+  ansible.builtin.package:
+    name: prometheus 
+    state: present 
+  tags: [init]
+
+- name: Install configurations
+  ansible.builtin.copy:
+    src: "prometheus/"
+    dest: "/etc/prometheus/"
+    owner: root
+    group: wheel
+    mode: "0644"
+  notify: [restart prometheus]
+  tags: [config]

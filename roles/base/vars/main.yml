@@ -1,0 +1,2 @@
+packages:
+  - rsync  # Needed for users/tasks/skel.yml (openrsync doesn't seem to work)

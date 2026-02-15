@@ -1,0 +1,7 @@
+- name: Install node_exporter
+  become: yes
+  ansible.builtin.package:
+    name: node_exporter
+    state: present 
+  tags: [init]
+  notify: [restart node_exporter]

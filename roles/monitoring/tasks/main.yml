@@ -1,0 +1,15 @@
+- name: Import alertmanager role
+  import_role:
+    name: monitoring/alertmanager
+
+- name: Import node_exporter role
+  import_role:
+    name: monitoring/node_exporter
+
+- name: Import Prometheus role
+  import_role:
+    name: monitoring/prometheus
+
+- name: Import Grafana role
+  import_role:
+    name: monitoring/grafana

@@ -1,0 +1,6 @@
+- name: Install authorized keys
+  authorized_key:
+    user: "{{ item.0.name }}"
+    key: "{{ lookup('file', 'ssh/' ~ item.1) }}"
+  loop: "{{ users | subelements('ssh', skip_missing=True) }}"
+  tags: [config]

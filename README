@@ -1,0 +1,17 @@
+Configure jacobedwards.org
+==========================
+
+Tags
+----
+
+- init
+
+  These tasks only need to be run once and initialize the role.
+
+- config
+
+  These tasks are run to update configurations for a role.
+
+- runtime
+
+  These tasks can be initiated for runtime maintenance. 

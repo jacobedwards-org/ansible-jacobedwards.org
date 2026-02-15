@@ -1,0 +1,4 @@
+- import_tasks: skel.yml
+- import_tasks: users.yml
+- import_tasks: ssh.yml
+- import_tasks: doas.yml

@@ -1,0 +1,5 @@
+alertmanager_smtp_from: "alerts <_alertmanager@jacobedwards.org>"
+alertmanager_smtp_smarthost: "localhost:25"
+alertmanager_smtp_user: "_alertmanager"
+alertmanager_smtp_key: "launches-representativeS8-converted-operation"
+alertmanager_receiver_email: "hostmaster@jacobedwards.org"

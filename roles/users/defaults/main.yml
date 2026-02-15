@@ -1,0 +1,6 @@
+users:
+  - name: jacob
+    groups: [wheel]
+    ssh_keys:
+      - jacob.pub
+    tags: [init]

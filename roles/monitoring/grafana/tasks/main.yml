@@ -1,0 +1,6 @@
+- name: Install and start Grafana
+  ansible.builtin.package:
+    name: grafana
+    state: present 
+  notify: [restart grafana]
+  tags: [init]

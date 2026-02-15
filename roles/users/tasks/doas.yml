@@ -1,0 +1,6 @@
+- name: Configure doas
+  ansible.builtin.copy:
+    src: doas.conf
+    dest: /etc/doas.conf
+    mode: '0644'
+  tags: [config]

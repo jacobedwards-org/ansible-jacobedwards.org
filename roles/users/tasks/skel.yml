@@ -1,0 +1,9 @@
+- name: Copy skeleton directory
+  ansible.posix.synchronize:
+    src: skel/
+    dest: /etc/skel/
+    delete: yes
+    recursive: yes
+    archive: yes
+    rsync_path: "doas rsync"
+  tags: [config]

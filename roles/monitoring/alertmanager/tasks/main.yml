@@ -1,0 +1,15 @@
+- name: Install alertmanager
+  ansible.builtin.package:
+    name: alertmanager 
+    state: present 
+  tags: [init]
+
+- name: Install configurations
+  ansible.builtin.template:
+    src: "alertmanager.yml.j2"
+    dest: "/etc/alertmanager/alertmanager.yml"
+    owner: root
+    group: wheel
+    mode: "0644"
+  notify: [restart alertmanager]
+  tags: [config]

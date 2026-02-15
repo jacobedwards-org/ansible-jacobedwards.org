@@ -1,0 +1,6 @@
+- name: Create users
+  user:
+    name: "{{ item.name }}"
+    groups: "{{ item.groups | default(omit) }}"
+  loop: "{{ users }}"
+  tags: [config]

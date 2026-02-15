@@ -1,0 +1,5 @@
+- name: restart sshguard
+  ansible.builtin.service:
+    name: sshguard
+    state: restarted
+    enabled: yes

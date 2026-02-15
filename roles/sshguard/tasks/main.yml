@@ -1,0 +1,15 @@
+- name: Install sshguard
+  ansible.builtin.package:
+    name: sshguard
+    state: present
+  tags: [init]
+
+- name: Install sshguard.conf
+  ansible.builtin.copy:
+    src: sshguard.conf
+    dest: /etc/sshguard.conf
+    owner: root
+    group: wheel
+    mode: 0644
+  notify: restart sshguard
+  tags: [config]

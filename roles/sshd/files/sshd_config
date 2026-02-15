@@ -1,0 +1,10 @@
+# OpenBSD sshd_config
+
+PermitRootLogin no
+PasswordAuthentication no
+AuthorizedKeysFile .ssh/authorized_keys
+LoginGraceTime 45s
+MaxAuthTries 2
+
+# Enable sftp
+Subsystem	sftp	/usr/libexec/sftp-server

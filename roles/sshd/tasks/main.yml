@@ -1,0 +1,8 @@
+- name: Install sshd_config
+  ansible.builtin.copy:
+    src: sshd_config
+    dest: /etc/ssh/sshd_config
+    mode: 0644
+    owner: root
+    group: wheel
+  notify: restart sshd

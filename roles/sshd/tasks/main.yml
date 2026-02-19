@@ -5,5 +5,5 @@
     mode: 0644
     owner: root
     group: wheel
-  notify: restart sshd
+  notify: [restart sshd]
   tags: [config]

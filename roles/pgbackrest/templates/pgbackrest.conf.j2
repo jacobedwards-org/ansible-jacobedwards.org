@@ -1,0 +1,20 @@
+[{{ pgbackrest_stanza_name }}]
+{% for d in pgbackrest_databases %}
+pg{{ loop.index }}-path={{ postgres_data }}
+pg{{ loop.index }}-socket-path={{ postgres_socket_dir }}
+pg{{ loop.index }}-user={{ pgbackrest_role }}
+pg{{ loop.index }}-database={{ d }}
+{% endfor %}
+
+[global]
+log-path={{ pgbackrest_log_path }}
+{% for repo in pgbackrest_repos %}
+{% set n = loop.index -%}
+{% if pgbackrest_cipher_pass is defined %}
+repo{{ n }}-cipher-pass={{ pgbackrest_cipher_pass }}
+repo{{ n }}-cipher-type={{ pgbackrest_cipher_type }}
+{% endif %}
+{% for key, value in repo.items() %}
+repo{{ n }}-{{ key }}={{ value }}
+{% endfor %}
+{% endfor %}

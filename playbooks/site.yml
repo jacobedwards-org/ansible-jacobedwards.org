@@ -6,3 +6,4 @@
     - sshguard
     - users
     - monitoring
+    - pgbackrest

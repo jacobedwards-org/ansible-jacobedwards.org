@@ -1,0 +1,59 @@
+# While it does depend on postgresql-server, I'm not explicitly
+# installing it here
+- name: Install packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - py3-psycopg2
+    - pgbackrest
+  tags: [init]
+
+- name: Enable PostgreSQL archive mode
+  community.postgresql.postgresql_alter_system:
+    param: "{{ item.param }}"
+    value: "{{ item.value }}"
+    login_db: "postgres"
+    login_user: "{{ postgres_admin_user }}"
+    login_password: "{{ postgres_admin_password | default(omit) }}"
+  loop:
+    - { param: "archive_mode", value: "on" }
+    - { param: "archive_command", value: "pgbackrest --stanza={{ pgbackrest_stanza_name }} archive-push %p" }
+  notify: restart postgresql
+  tags: [config]
+
+#- name: Create pgBackRest role
+
+- name: Grant pgBackRest peer access to databases
+  community.postgresql.postgresql_pg_hba:
+    contype: local
+    databases: "{{ pgbackrest_databases | join (',') }}"
+    users: "{{ pgbackrest_role }}"
+    method: peer
+    dest: "{{ postgres_data }}/pg_hba.conf"
+    create: true
+  notify: restart postgresql
+  tags: [config]
+
+- name: Configure pgBackRest
+  ansible.builtin.template:
+    src: pgbackrest.conf.j2
+    dest: /etc/pgbackrest/pgbackrest.conf
+    owner: root
+    group: "{{ pgbackrest_user }}"
+    mode: 0640
+  notify: initialize pgbackrest
+  tags: [config]
+
+- name: Add pgBackRest backup cronjobs
+  ansible.builtin.cron:
+    name: "pgBackRest {{ item.type }} backup"
+    user: "{{ pgbackrest_user }}"
+    minute: "{{ item.minute | default(omit) }}"
+    hour: "{{ item.hour | default(omit) }}"
+    weekday: "{{ item.weekday | default(omit) }}"
+    job: "pgbackrest backup --type {{ item.type }} --stanza {{ pgbackrest_stanza_name }}"
+  loop:
+    - { type: "full", "weekday": "0", "hour": "~", "minute": "~" }
+    - { type: "diff", "minute": "~/15" }
+  tags: [config]

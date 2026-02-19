@@ -1,0 +1,21 @@
+postgres_data: "/var/postgresql/data"
+postgres_socket_dir: "/tmp"
+
+postgres_admin_role: postgres
+# postgres_admin_password:
+
+pgbackrest_databases: ["postgres"]
+pgbackrest_repos: [
+  {
+    path: "/var/postgresql/pgbackrest",
+  }
+]
+
+pgbackrest_log_path: "/var/log/pgbackrest"
+pgbackrest_user: "{{ postgres_admin_user }}"
+pgbackrest_role: "{{ pgbackrest_user }}"
+pgbackrest_stanza_name: main
+
+# Enable encryption with:
+# pgbackrest_cipher_type: somekey
+pgbackrest_cipher_type: aes-256-cbc

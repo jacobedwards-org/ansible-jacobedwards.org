@@ -1,0 +1,9 @@
+- name: restart postgresql
+  ansible.builtin.service:
+    name: postgresql
+    state: restarted
+
+- name: initialize pgbackrest
+  ansible.builtin.command:
+    argv: [su, "{{ pgbackrest_user }}", -c,
+        "pgbackrest stanza-create --stanza {{ pgbackrest_stanza_name }}"]

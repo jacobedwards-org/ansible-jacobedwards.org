@@ -9,3 +9,4 @@
     - pgbackrest
     - httpd
     - relayd
+    - pf

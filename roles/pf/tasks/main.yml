@@ -1,0 +1,9 @@
+- name: Configure pf ruleset
+  ansible.builtin.copy:
+    src: pf.conf
+    dest: /etc/pf.conf
+    mode: 0600
+    owner: root
+    group: wheel
+  notify: reload pf ruleset
+  tags: [config]

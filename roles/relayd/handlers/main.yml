@@ -1,0 +1,5 @@
+- name: restart relayd
+  ansible.builtin.service:
+    name: relayd
+    state: restarted
+    enabled: yes

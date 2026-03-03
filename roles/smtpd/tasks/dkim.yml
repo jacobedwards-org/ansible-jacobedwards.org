@@ -1,0 +1,39 @@
+- name: Install OpenSMTPD dkimsign filter
+  ansible.builtin.package:
+    name: opensmtpd-filter-dkimsign
+    state: present
+  tags: [init]
+
+- name: Get DKIM directory
+  ansible.builtin.set_fact:
+    smtpd_dkim_dir: "{{ smtpd_dkim_key | dirname }}"
+  tags: [config]
+
+- name: Create DKIM directory
+  ansible.builtin.file:
+    name: "{{ smtpd_dkim_dir }}"
+    state: directory
+    owner: root
+    group: "{{ smtpd_dkim_user }}"
+    mode: 0750
+  tags: [config]
+
+- name: Generate private DKIM key
+  ansible.builtin.command:
+    argv: [openssl, genrsa, -out, "{{ smtpd_dkim_key }}", 2048]
+    creates: "{{ smtpd_dkim_key }}"
+  tags: [init]
+
+- name: Set private DKIM key permissions
+  ansible.builtin.file:
+    name: "{{ smtpd_dkim_key }}"
+    owner: "{{ smtpd_dkim_user }}"
+    group: "{{ smtpd_dkim_user }}"
+    mode: 0640
+  tags: [config]
+
+- name: Generate public DKIM key
+  ansible.builtin.shell:
+    cmd: "openssl rsa -in {{ smtpd_dkim_key }} -pubout | sed '1s/.*/v=DKIM1;p=/;:nl;${s/-----.*//;q;};N;s/\n//g;b nl;' > {{ smtpd_dkim_pubkey }}"
+    creates: "{{ smtpd_dkim_pubkey }}"
+  tags: [init]

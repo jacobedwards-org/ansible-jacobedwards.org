@@ -1,0 +1,23 @@
+smtpd_if: "vio0"
+smtpd_deliver_domains: [ "{{ ansible_host }}" ]
+
+# Aliases/blacklist
+smtpd_system_alias: "wheel"
+smtpd_blacklist: []
+smtpd_aliases: {}
+
+# Host
+smtpd_domain: "jacobedwards.org"
+smtpd_host: "mail"
+smtpd_fqdn: "{{ smtpd_host }}.{{ smtpd_domain }}"
+
+# TLS
+smtpd_tls_cert: "/etc/ssl/{{ smtpd_domain }}.crt"
+smtpd_tls_key: "/etc/ssl/private/{{ smtpd_domain }}.key"
+
+# DKIM
+smtpd_dkim_user: _dkimsign
+smtpd_dkim_domain: "{{ smtpd_domain }}"
+smtpd_dkim_selector: "{{ smtpd_host }}"
+smtpd_dkim_key: "/etc/mail/dkim/private.key"
+smtpd_dkim_pubkey: "/etc/mail/dkim/public.key"

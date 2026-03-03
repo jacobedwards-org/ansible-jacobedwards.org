@@ -1,0 +1,13 @@
+- name: restart smtpd
+  ansible.builtin.service:
+    name: smtpd
+    state: restarted
+    enabled: yes
+
+- name: newaliases
+  ansible.builtin.command:
+    cmd: "newaliases"
+
+- name: update blacklist
+  ansible.builtin.command:
+    cmd: "smtpctl update table blocked"

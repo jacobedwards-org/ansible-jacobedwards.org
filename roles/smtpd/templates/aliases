@@ -1,0 +1,30 @@
+# Basic system aliases -- these MUST be present
+MAILER-DAEMON	postmaster
+postmaster	root
+
+# General redirections for important pseudo accounts
+daemon	root
+ftp-bugs	root
+operator	root
+www	root
+
+# RFC 2142: NETWORK OPERATIONS MAILBOX NAMES
+abuse	root
+security	root
+
+# RFC 2142: SUPPORT MAILBOX NAMES FOR SPECIFIC INTERNET SERVICES
+hostmaster	root
+webmaster	root
+
+# Etc. system
+dmarc	root
+
+# Well-known aliases -- these should be filled in!
+manager	root
+dumper	root
+root	{{ smtpd_system_alias | default("wheel") }}
+
+# Etc.
+{% for k, v in smtpd_aliases.items() %}
+{{ k }}  {{ v }}
+{% endfor %}

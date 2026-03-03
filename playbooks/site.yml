@@ -5,6 +5,7 @@
     - sshd
     - sshguard
     - users
+    - smtpd
     - monitoring
     - pgbackrest
     - httpd

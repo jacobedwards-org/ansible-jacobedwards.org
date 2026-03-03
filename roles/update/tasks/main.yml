@@ -1,0 +1,14 @@
+- name: Upgrade packages
+  ansible.builtin.command:
+    command: "pkg_add -u"
+  tags: [runtime]
+
+- name: Install system patches
+  ansible.builtin.command:
+    command: "syspatch"
+  tags: [runtime]
+
+- name: Install non-free firmware
+  ansible.builtin.command:
+    command: "fw_update"
+  tags: [runtime]

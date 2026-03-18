@@ -22,7 +22,9 @@ dmarc	root
 # Well-known aliases -- these should be filled in!
 manager	root
 dumper	root
-root	{{ smtpd_system_alias | default("wheel") }}
+{% if smtpd_system_alias is defined %}
+root	{{ smtpd_system_alias }}
+{% endif %}
 
 # Etc.
 {% for k, v in smtpd_aliases.items() %}

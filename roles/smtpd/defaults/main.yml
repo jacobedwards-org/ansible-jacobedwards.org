@@ -2,7 +2,7 @@ smtpd_if: "vio0"
 smtpd_deliver_domains: [ "{{ ansible_host }}" ]
 
 # Aliases/blacklist
-smtpd_system_alias: "wheel"
+#smtpd_system_alias:
 smtpd_blacklist: []
 smtpd_aliases: {}
 

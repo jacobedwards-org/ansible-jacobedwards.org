@@ -22,8 +22,9 @@ Playbooks
 Playbooks are located under the `playbooks` directory. The following
 playbooks are available:
 
-- `site.yml` — Configure the system.
-- `upgrade.yml` — Upgrade the system.
+- `site.yml` — Main playbook to fully configure the system.
+- `update.yml` — Update packages and apply system patches.
+- `upgrade.yml` — Upgrade the system to the next OpenBSD release.
 
 Additionally, the `bin/runrole` script is included to generate and
 execute a temporary playbook for the roles specified as arguments.

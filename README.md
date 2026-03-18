@@ -8,8 +8,9 @@ project, expect a lot of breaking changes as I learn best practices.
 Objectives
 ----------
 
-One major reason for formalizing this system Ansible is self-documentation
-and version control. Aside from that, there are these main objectives:
+One major reason for formalizing this system in Ansible is
+self-documentation and version control. Aside from that, there are
+these main objectives:
 
 - Full configuration & maintenance coverage for jacobedwards.org.
 - Full outcome and variable documentation for roles.

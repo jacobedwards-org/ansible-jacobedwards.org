@@ -3,8 +3,7 @@ Ansible Roles & Playbooks for jacobedwards.org
 
 These roles and playbooks will eventually have full coverage of all
 the services on jacobedwards.org. Since this is my first real Ansible
-project expect a lot of breaking changes as I make updates to follow
-best practices as I learn them.
+project, expect a lot of breaking changes as I learn best practices.
 
 Objectives
 ----------

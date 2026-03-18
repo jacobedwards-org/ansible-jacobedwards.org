@@ -1,0 +1,19 @@
+#!/bin/sh
+
+root=.
+playbook="$(mktemp "$root"/playbooks/runroleXXXXXX)"
+trap 'rm -f "$playbook"' 0
+
+while test $# -gt 0 -a "$1" '!=' '--'
+do
+	roles="${roles:+$roles,}$1"
+	shift
+done
+
+test $# -gt 0 &&
+	shift
+
+echo "- hosts: all
+  become: true
+  roles: [$roles]" > "$playbook"
+ansible-playbook "$@" "$playbook"

@@ -11,3 +11,4 @@
     - httpd
     - relayd
     - pf
+    - gitsrv

@@ -1,0 +1,13 @@
+# {{ template_name }}
+
+{% for opt, def in gitsrv_conf_def.items() %}
+{% if def.for == template_name %}
+{% set v = (gitsrv_conf[opt] | default(def.val)) %}
+{% if v is defined %}
+{{ def.name | default(opt) }}	{{ v }}
+{% endif %}
+{% endif %}
+{% endfor %}
+{% if template_name == "stagit-hook.conf" and gitsrv_conf["pubfile"] is defined %}
+hasfile	{{ gitsrv_conf["pubfile"] }}
+{% endif %}

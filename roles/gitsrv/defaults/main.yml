@@ -1,0 +1,11 @@
+# gitsrv user
+gitsrv_user: git
+
+# gitsrv configuration options
+gitsrv_conf: []
+
+# local stagit style directory
+gitsrv_stagit_styles: styles
+
+# temporary fix variable
+openbsd_internal_packages: "https://dist.jacobedwards.org/OpenBSD/%c/packages/%a"

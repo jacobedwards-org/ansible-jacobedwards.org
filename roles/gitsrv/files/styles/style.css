@@ -1,0 +1,133 @@
+/* Fonts */
+
+body {
+	font-family: "Roboto", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Roboto Slab", serif;
+	margin: 0;
+	font-size: 1em;
+}
+
+pre, code {
+	font-family: "Roboto Mono", monospace;
+	font-size: .7rem;
+}
+
+#content {
+	font-size: .85rem;
+}
+
+/* General */
+
+:root {
+	--link-color: #4183c4;
+	--accent-color: #FAFAFA;
+}
+
+body {
+        min-width: min(80vw, 1200px);
+        max-width: 1200px;
+        margin: auto;
+        padding: 2em;
+}
+
+img, h1, h2 {
+	vertical-align: middle;
+}
+
+img {
+	padding: .5em;
+}
+
+body > table:nth-child(1) {
+	margin: 0;
+	padding: 0;
+}
+
+body > table:nth-child(1) a {
+	color: var(--link-color);
+}
+
+body > hr {
+	border: none;
+	padding-top: 2em;
+}
+
+/* Subtle links */
+#content a {
+        color: inherit;
+        text-decoration: inherit;
+        transition: color 0.1s ease;
+}
+
+#content a:is(:focus, :hover) {
+	color: var(--link-color);
+	text-decoration: underline;
+}
+
+#content a:active {
+        color: revert;
+}
+
+/* Tables */
+#content table {
+	border-collapse: collapse;
+}
+
+#content thead {
+	border-bottom: 2px solid black;
+}
+
+#content tr:nth-child(even) {
+	background-color: var(--accent-color);
+}
+
+#content thead td > b {
+	font-weight: normal;
+}
+
+#content tbody tr:not(:last-child) {
+	border-bottom: 1px solid #0002;
+}
+
+:is(#branches, #tags, #index, #log, #files) tr:last-child {
+	border-bottom: 1px solid #0002;
+}
+
+#content td {
+	padding: .6em 1em;
+}
+
+/* Index */
+
+/* don't display owner column */
+#index > * > tr > td:nth-child(3) {
+	display: none;
+}
+
+/* Log */
+/* limit commit message length */
+#log td:nth-child(2) {
+	max-width: 52ch;
+	/* Not sure I want to truncate messages.
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;	
+	*/
+}
+
+/* Diff */
+/* hunk */
+#content a.h {}
+
+/* delete */
+#content .d {
+	color: red;
+}
+
+/* insert */
+#content .i {
+	color: green;
+}

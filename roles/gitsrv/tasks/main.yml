@@ -1,0 +1,39 @@
+- name: Install gitsrv
+  ansible.builtin.package:
+    name: gitsrv
+    state: present
+  environment:
+    PKG_PATH: "{{ openbsd_internal_packages }}:installurl"
+
+- name: Create destination directories
+  vars:
+    path: "{{ gitsrv_conf[opt.key] | default(opt.value.def) }}"
+  ansible.builtin.file:
+    path: "{{ path }}"
+    state: directory
+    owner: "{{ gitsrv_user }}"
+    group: "{{ gitsrv_user }}"
+  loop: "{{ gitsrv_conf_def | dict2items }}"
+  loop_control:
+    loop_var: opt
+  when: opt.value.type is defined and opt.value.type == "d" and path is defined
+
+- name: Copy styles to styledir
+  ansible.builtin.copy:
+    src: "{{ gitsrv_stagit_styles }}/{{ style }}"
+    dest: "{{ gitsrv_conf['stagit_styledir'] | default(gitsrv_conf_def['stagit_styledir'].def) }}"
+  loop: "{{ gitsrv_stagit_style_files }}"
+  loop_control:
+    loop_var: style
+
+- name: Install configurations
+  ansible.builtin.template:
+    src: "config.j2"
+    dest: "/etc/{{ template_name }}"
+    owner: "{{ gitsrv_user }}"
+    group: "{{ gitsrv_user }}"
+  loop:
+    - gitsrv.conf
+    - stagit-hook.conf
+  loop_control:
+    loop_var: template_name

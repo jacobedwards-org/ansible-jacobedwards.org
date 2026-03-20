@@ -1,0 +1,38 @@
+# Files for stagit(1) & stagit-index(1)
+gitsrv_stagit_style_files:
+  - favicon.png
+  - logo.png
+  - style.css
+
+# Data for configuration map
+gitsrv_conf_def:
+  pubfile:
+    for: gitsrv.conf
+  distdir:
+    type: d
+    for: gitsrv.conf
+  mandir:
+    type: d
+    for: gitsrv.conf
+  ghtoken:
+    for: gitsrv.conf
+  stagit_enabled:
+    val: "true"
+    for: gitsrv.conf
+    name: stagit
+  stagit_baseurl:
+    for: stagit-hook.conf
+    name: baseurl
+  stagit_basedir:
+    type: d
+    for: stagit-hook.conf
+    name: basedir
+  stagit_repodir:
+    type: d
+    for: stagit-hook.conf
+    name: repodir
+  stagit_styledir:
+    type: d
+    val: "/etc/stagit-style"
+    for: stagit-hook.conf
+    name: styledir

@@ -1,0 +1,17 @@
+acmeclient_authority_keyfile: "{{ root }}/files/acme-client/letsencrypt-private.pem"
+
+acmeclient_certs:
+  jacobedwards.org:
+    - xmpp.jacobedwards.org
+    - chat.jacobedwards.org
+    - uploads.jacobedwards.org
+    - proxy.jacobedwards.org
+    - mail.jacobedwards.org
+    - music.jacobedwards.org
+    - man.jacobedwards.org
+    - dist.jacobedwards.org
+    - monitoring.jacobedwards.org
+    - music.jacobedwards.org
+  spaceplanner.app:
+    - api.spaceplanner.app
+    - web.spaceplanner.app

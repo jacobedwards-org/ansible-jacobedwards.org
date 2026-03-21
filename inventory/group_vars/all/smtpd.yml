@@ -1,1 +1,29 @@
 smtpd_system_alias: jacob
+
+smtpd_deliver_domains:
+  - jacobedwards.org
+  - spaceplanner.app
+
+smtpd_blacklist:
+  - joinhomebase.com
+  - example.com
+
+smtpd_aliases:
+  # Spaceplanner.App
+  support: jacob
+  privacy: jacob
+  dev: jacob
+  chk: jacob
+  admins: jacob
+  _spaceplanner: jacob
+
+  # Personal (mostly just archived at this point)
+  serviceproxy: jacob
+  proxy: jacob
+  nothappening: jacob
+  games: jacob
+
+  # Temporary
+  feb2026: jacob
+  mar2026: jacob
+  apr2026: jacob

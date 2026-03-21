@@ -1,0 +1,2 @@
+# Root Ansible directory
+root: "{{ playbook_dir }}/../"

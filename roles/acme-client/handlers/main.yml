@@ -1,0 +1,3 @@
+- name: update certificates
+  ansible.builtin.command:
+    cmd: "{{ acmeclient_refresh_command }}"

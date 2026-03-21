@@ -1,0 +1,18 @@
+authority {{ acmeclient_authority_name }} {
+	api url "{{ acmeclient_authority_url }}"
+	account key "{{ acmeclient_acme_root ~ '/' ~ (acmeclient_authority_keyfile | basename) }}"
+	contact "mailto:{{ acmeclient_authority_contact }}"
+}
+{% for d, alts in acmeclient_certs.items() %}
+
+domain {{ d }} {
+{% if alts %}
+	alternative names {
+		{{ alts | join(',\n\t\t') }}
+	}
+{% endif %}
+	domain key "{{ acmeclient_cert_root }}/private/{{ d }}.key"
+	domain full chain certificate "{{ acmeclient_cert_root }}/{{ d }}.crt"
+	sign with {{ acmeclient_authority_name }}
+}
+{% endfor %}

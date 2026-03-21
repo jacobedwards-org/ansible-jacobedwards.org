@@ -1,0 +1,18 @@
+# acme-client role defaults
+
+# command used to refresh certs on updated config
+acmeclient_refresh_command: autocert
+
+# root cert directory
+acmeclient_cert_root: "/etc/ssl"
+acmeclient_acme_root: "/etc/acme"
+
+# authority configuration
+#acmeclient_authority_keyfile:
+acmeclient_authority_name: "letsencrypt"
+acmeclient_authority_url: "https://acme-v02.api.letsencrypt.org/directory"
+acmeclient_authority_contact: "hostmaster@{{ ansible_host }}"
+
+# map of handles/domains with lists of alternate names
+acmeclient_certs:
+  "{{ ansible_host }}": []

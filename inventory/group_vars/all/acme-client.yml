@@ -14,4 +14,4 @@ acmeclient_certs:
     - music.jacobedwards.org
   spaceplanner.app:
     - api.spaceplanner.app
-    - web.spaceplanner.app
+    - spaceplanner.app

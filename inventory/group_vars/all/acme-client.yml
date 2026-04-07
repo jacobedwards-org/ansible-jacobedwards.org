@@ -15,3 +15,6 @@ acmeclient_certs:
   spaceplanner.app:
     - api.spaceplanner.app
     - www.spaceplanner.app
+  axiomquote.com:
+    - api.axiomquote.com
+    - www.axiomquote.com

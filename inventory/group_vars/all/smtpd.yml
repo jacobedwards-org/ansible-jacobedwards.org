@@ -3,6 +3,7 @@ smtpd_system_alias: jacob
 smtpd_deliver_domains:
   - jacobedwards.org
   - spaceplanner.app
+  - axiomquote.com
 
 smtpd_blacklist:
   - joinhomebase.com
@@ -22,6 +23,9 @@ smtpd_aliases:
   proxy: jacob
   nothappening: jacob
   games: jacob
+
+  # AxiomQuote
+  axiom: jacob
 
   # Temporary
   feb2026: jacob

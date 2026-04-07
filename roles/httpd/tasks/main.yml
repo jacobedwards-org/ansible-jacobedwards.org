@@ -1,6 +1,6 @@
 - name: Configure httpd
   ansible.builtin.copy:
-    src: httpd.conf
+    src: "{{ httpd_conf }}"
     dest: /etc/httpd.conf
     mode: 0644
     owner: root
